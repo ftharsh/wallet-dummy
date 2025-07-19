@@ -6,7 +6,7 @@ import TransactionsView from "./components/dashboard/TransactionView";
 import Dashboard from "./components/DashboardMain";
 import Analytics from "./components/dashboard/TransactionAnalytics";
 import Preloader from "./components/Preloader.jsx";
-import HelpPage from "./components/dashboard/WalletTutorial.jsx";
+
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,7 +26,7 @@ function App() {
           <Route path="/transactions" element={<TransactionsView />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/analytics" element={<Analytics />} />
-          <Route path="/help" element={<HelpPage />} />
+          {/* <Route path="/help" element={<HelpPage />} /> */}
         </Routes>
       )}
     </>
