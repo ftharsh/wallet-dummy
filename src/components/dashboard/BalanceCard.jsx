@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { walletService } from "../utils/walletService.js";
 import { isAuthenticated } from "../utils/authService.js";
 import TransactionEffects from "./TransitionEffect.jsx";
@@ -21,13 +21,7 @@ const BalanceCard = ({ onCompleteFetch }) => {
   const [query, setQuery] = useState("");
   const [fetchingSuggestions, setFetchingSuggestions] = useState(false);
 
-  useEffect(() => {
-    if (isAuthenticated()) {
-      fetchBalance();
-    }
-  }, []);
-
-  const fetchBalance = async () => {
+  const fetchBalance = useCallback(async () => {
     try {
       setLoading(true);
       const data = await walletService.getBalance();
@@ -38,7 +32,13 @@ const BalanceCard = ({ onCompleteFetch }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [onCompleteFetch]);
+
+  useEffect(() => {
+    if (isAuthenticated()) {
+      fetchBalance();
+    }
+  }, [fetchBalance]);
 
   useEffect(() => {
     let timeoutId;

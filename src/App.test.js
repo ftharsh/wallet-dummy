@@ -52,11 +52,6 @@ jest.mock("./components/Preloader.jsx", () => ({
   default: ({ onComplete }) => <MockPreloader onComplete={onComplete} />,
 }));
 
-jest.mock("./components/dashboard/WalletTutorial.jsx", () => ({
-  __esModule: true,
-  default: () => <MockHelpPage />,
-}));
-
 describe("App Component", () => {
   beforeEach(() => {
     jest.useFakeTimers();
